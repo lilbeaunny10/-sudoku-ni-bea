@@ -6,35 +6,32 @@ let currentSolution = [];
 let timer = 0;
 let timerInterval;
 let timerStarted = false;
+let selectedNumber = null; // number from number pad
+let selectedCell = null;   // selected cell
 
 // ===================
 // Initialize
 // ===================
 window.addEventListener('DOMContentLoaded', () => {
-    // Generate first puzzle
     generatePuzzle();
 
-    // Button event listeners
-    document.getElementById('new-game-btn').addEventListener('click', generatePuzzle);
-    document.getElementById('check-btn').addEventListener('click', checkSolution);
-    document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('new-game-btn')?.addEventListener('click', generatePuzzle);
+    document.getElementById('check-btn')?.addEventListener('click', checkSolution);
+    document.getElementById('reset-btn')?.addEventListener('click', () => {
         createGrid();
         resetTimer();
         createNumberGuide();
     });
-    document.getElementById('next-game-btn').addEventListener('click', generatePuzzle);
+    document.getElementById('next-game-btn')?.addEventListener('click', generatePuzzle);
 });
 
 // ===================
 // Generate Puzzle
 // ===================
 function generatePuzzle() {
-    // Hide modal
     document.getElementById('success-modal').style.display = 'none';
-
     const difficulty = document.getElementById('difficulty').value;
     [currentSolution, currentPuzzle] = createRandomPuzzle(difficulty);
-
     createGrid();
     createNumberGuide();
     resetTimer();
@@ -63,17 +60,32 @@ function createGrid() {
             e.target.value = e.target.value.replace(/[^1-9]/g, '');
             startTimer();
             updateNumberGuide();
-            checkSolution(); // auto-check solution
         });
 
         // Hover highlights
         cell.addEventListener('mouseover', () => highlightCell(i));
         cell.addEventListener('mouseout', removeHighlight);
 
-        // Click highlights
-        cell.addEventListener('click', () => highlightNumberRowCol(i));
+        // Click highlights & number pad support
+        cell.addEventListener('click', () => {
+            highlightNumberRowCol(i);
+            selectedCell = cell;
+            if (selectedNumber && !cell.disabled) fillCell(cell, selectedNumber);
+        });
 
         grid.appendChild(cell);
+    }
+}
+
+// ===================
+// Fill Cell Function (Number Pad Support)
+// ===================
+function fillCell(cell, number) {
+    if (!cell.disabled) {
+        cell.value = number;
+        cell.style.color = 'blue';
+        updateNumberGuide();
+        startTimer();
     }
 }
 
@@ -116,18 +128,18 @@ function checkSolution() {
 
     if (correct) {
         clearInterval(timerInterval); // stop timer
-
-        // Show success modal
-        const modal = document.getElementById('success-modal');
-        modal.style.display = 'flex';
-
-        // Trigger confetti
-        confetti({
-            particleCount: 200,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
+        showSuccessModal();
     }
+}
+
+// ===================
+// Success Modal + Confetti
+// ===================
+function showSuccessModal() {
+    const modal = document.getElementById('success-modal');
+    modal.style.display = 'flex';
+    // Confetti
+    if (typeof confetti === 'function') confetti();
 }
 
 // ===================
@@ -173,7 +185,6 @@ function highlightNumberRowCol(index) {
         const c = i % 9;
 
         cell.style.backgroundColor = '#fff';
-
         if (r === row || c === col) cell.style.backgroundColor = '#f0d9b5';
         if (cell.value === number) cell.style.backgroundColor = '#ffd966';
     });
@@ -191,6 +202,17 @@ function createNumberGuide() {
         numCell.classList.add('number-cell');
         numCell.id = `guide-${i}`;
         numCell.textContent = i;
+
+        // Click listener for number pad
+        numCell.addEventListener('click', () => {
+            document.querySelectorAll('.number-cell').forEach(n => n.classList.remove('selected'));
+            numCell.classList.add('selected');
+            selectedNumber = i;
+
+            // Fill selected cell if already clicked
+            if (selectedCell) fillCell(selectedCell, selectedNumber);
+        });
+
         guide.appendChild(numCell);
     }
     updateNumberGuide();
