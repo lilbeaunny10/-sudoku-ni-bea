@@ -1,6 +1,4 @@
-/* ========================
-   General Styles
-======================== */
+/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #fdf6e3;
@@ -24,7 +22,6 @@ body {
     color: #8B4513;
     margin: 0;
     font-size: 28px;
-    text-align: center;
 }
 
 #timer {
@@ -39,6 +36,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .controls button, .controls select {
@@ -83,37 +81,18 @@ body {
 }
 
 /* 3x3 Box Borders */
-.cell:nth-child(3n) {
-    border-right: 3px solid #8B4513;
-}
-
-.cell:nth-child(3n+1) {
-    border-left: 3px solid #8B4513;
-}
-
-.cell:nth-child(-n+9) {
-    border-top: 3px solid #8B4513;
-}
-
+.cell:nth-child(3n) { border-right: 3px solid #8B4513; }
+.cell:nth-child(3n+1) { border-left: 3px solid #8B4513; }
+.cell:nth-child(-n+9) { border-top: 3px solid #8B4513; }
 .cell:nth-child(n+28):nth-child(-n+36),
-.cell:nth-child(n+55):nth-child(-n+63) {
-    border-top: 3px solid #8B4513;
-}
-
+.cell:nth-child(n+55):nth-child(-n+63) { border-top: 3px solid #8B4513; }
 .cell:nth-child(n+19):nth-child(-n+27),
 .cell:nth-child(n+46):nth-child(-n+54),
-.cell:nth-child(n+73):nth-child(-n+81) {
-    border-bottom: 3px solid #8B4513;
-}
+.cell:nth-child(n+73):nth-child(-n+81) { border-bottom: 3px solid #8B4513; }
 
-/* Hover & Click Highlights */
-.cell.highlight {
-    background-color: #f0d9b5;
-}
-
-.cell.selected-number {
-    background-color: #ffd966;
-}
+/* Hover and Click Highlights */
+.cell.highlight { background-color: #f0d9b5; }
+.cell.selected-number { background-color: #ffd966; }
 
 /* Number Guide */
 #number-guide {
@@ -121,6 +100,7 @@ body {
     justify-content: center;
     margin-top: 15px;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .number-cell {
@@ -130,14 +110,12 @@ body {
     border: 1px solid #8B4513;
     border-radius: 5px;
     font-weight: bold;
-    cursor: default;
+    cursor: pointer;
     background-color: #fff;
 }
 
-.number-cell.completed {
-    background-color: #8B4513;
-    color: #fff;
-}
+.number-cell.completed { background-color: #8B4513; color: #fff; }
+.number-cell.selected { background-color: #ffd966; }
 
 /* Success Modal */
 #success-modal {
@@ -168,92 +146,16 @@ body {
     margin-bottom: 20px;
 }
 
-#success-modal button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background: #8B4513;
-    color: white;
-    cursor: pointer;
-}
-/* ========================
-   Mobile Responsive Fix
-   ======================== */
+/* Mobile Responsive */
 @media (max-width: 600px) {
-
-    .container {
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-
-    .header h1 {
-        font-size: 20px;
-        text-align: center;
-        word-break: break-word;
-    }
-
-    #timer {
-        font-size: 14px;
-        text-align: right;
-    }
-
-    .controls {
-        flex-wrap: wrap;
-        gap: 6px;
-        justify-content: center;
-    }
-
-    .controls button,
-    .controls select {
-        font-size: 13px;
-        padding: 6px 8px;
-        flex: 1 1 30%;
-        min-width: 70px;
-        box-sizing: border-box;
-    }
-
-    /* Sudoku Grid Scaling */
-    #sudoku-grid {
-        display: grid;
-        grid-template-columns: repeat(9, 1fr);
-        width: 100%;
-        max-width: 360px;
-        margin: 15px auto;
-        gap: 1px;
-    }
-
-    .cell {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        font-size: 14px;
-        padding: 0;
-    }
-
-    /* Number Guide */
-    #number-guide {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-        margin-top: 10px;
-    }
-
-    .number-cell {
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
-        font-size: 12px;
-    }
-
-    /* Success Modal */
-    #success-modal > div {
-        width: 90%;
-        max-width: 320px;
-        padding: 20px;
-    }
-
-    #success-modal p {
-        font-size: 16px;
-    }
+    .container { width: 100%; padding: 10px; }
+    .header h1 { font-size: 22px; }
+    #timer { font-size: 14px; }
+    .controls button, .controls select { font-size: 13px; padding: 6px 8px; }
+    #sudoku-grid { grid-template-columns: repeat(9, 1fr); width: 100%; max-width: 360px; }
+    .cell { width: 100%; aspect-ratio: 1 / 1; font-size: 16px; }
+    #number-guide { flex-wrap: wrap; gap: 6px; }
+    .number-cell { width: 30px; height: 30px; line-height: 30px; font-size: 14px; }
+    #success-modal > div { width: 90%; max-width: 320px; padding: 20px; }
+    #success-modal p { font-size: 18px; }
 }
