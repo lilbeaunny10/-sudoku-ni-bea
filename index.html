@@ -1,0 +1,48 @@
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku ni Bea hahaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Sudoku ni Bea hahaha</h1>
+            <div id="timer">Time: 0s</div>
+        </div>
+
+       <div class="controls">
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select>
+    <button id="new-game-btn">New Game</button>
+    <button id="check-btn">Check Solution</button>
+    <button id="reset-btn">Reset</button>
+</div>
+
+        <!-- Sudoku Grid -->
+        <div id="sudoku-grid"></div>
+
+        <!-- Number Guide -->
+        <div id="number-guide"></div>
+
+        <!-- Success Modal -->
+        <div id="success-modal">
+            <div>
+                <p>Aywow at dahil na-solve mo, may kiss ka sa akin 😘</p>
+                <button id="next-game-btn">Next Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

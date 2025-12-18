@@ -1,0 +1,179 @@
+/* ========================
+   General Styles
+======================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf6e3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 550px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Header */
+.header h1 {
+    color: #8B4513;
+    margin: 0;
+    font-size: 28px;
+    text-align: center;
+}
+
+#timer {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Controls */
+.controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls button, .controls select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #8B4513;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.controls button:hover {
+    background-color: #8B4513;
+    color: #fff;
+}
+
+/* Sudoku Grid */
+#sudoku-grid {
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px);
+    gap: 0;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Grid Cells */
+.cell {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #000;
+    outline: none;
+    background-color: #fff;
+}
+
+.cell:disabled {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+/* 3x3 Box Borders */
+.cell:nth-child(3n) {
+    border-right: 3px solid #8B4513;
+}
+
+.cell:nth-child(3n+1) {
+    border-left: 3px solid #8B4513;
+}
+
+.cell:nth-child(-n+9) {
+    border-top: 3px solid #8B4513;
+}
+
+.cell:nth-child(n+28):nth-child(-n+36),
+.cell:nth-child(n+55):nth-child(-n+63) {
+    border-top: 3px solid #8B4513;
+}
+
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54),
+.cell:nth-child(n+73):nth-child(-n+81) {
+    border-bottom: 3px solid #8B4513;
+}
+
+/* Hover & Click Highlights */
+.cell.highlight {
+    background-color: #f0d9b5;
+}
+
+.cell.selected-number {
+    background-color: #ffd966;
+}
+
+/* Number Guide */
+#number-guide {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.number-cell {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #8B4513;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: default;
+    background-color: #fff;
+}
+
+.number-cell.completed {
+    background-color: #8B4513;
+    color: #fff;
+}
+
+/* Success Modal */
+#success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#success-modal > div {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+}
+
+#success-modal p {
+    font-size: 20px;
+    color: #8B4513;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#success-modal button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: #8B4513;
+    color: white;
+    cursor: pointer;
+}
