@@ -177,3 +177,70 @@ body {
     color: white;
     cursor: pointer;
 }
+/* ========================
+   Mobile Responsive Fix
+   ======================== */
+@media (max-width: 600px) {
+
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    #timer {
+        font-size: 14px;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .controls button,
+    .controls select {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    /* Sudoku Grid Scaling */
+    #sudoku-grid {
+        grid-template-columns: repeat(9, 1fr);
+        width: 100%;
+        max-width: 360px;
+        margin: 15px auto;
+    }
+
+    .cell {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        font-size: 16px;
+    }
+
+    /* Number Guide */
+    #number-guide {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .number-cell {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    /* Success Modal */
+    #success-modal > div {
+        width: 90%;
+        max-width: 320px;
+        padding: 20px;
+    }
+
+    #success-modal p {
+        font-size: 18px;
+    }
+}
