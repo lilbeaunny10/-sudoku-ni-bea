@@ -10,7 +10,6 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background-color: red !important;
 }
 
 .container {
@@ -245,4 +244,5 @@ body {
         font-size: 18px;
     }
 }
+
 
