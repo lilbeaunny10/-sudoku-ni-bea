@@ -146,16 +146,88 @@ body {
     margin-bottom: 20px;
 }
 
-/* Mobile Responsive */
+/* ========================
+   Mobile Responsive Fix
+   ======================== */
 @media (max-width: 600px) {
-    .container { width: 100%; padding: 10px; }
-    .header h1 { font-size: 22px; }
-    #timer { font-size: 14px; }
-    .controls button, .controls select { font-size: 13px; padding: 6px 8px; }
-    #sudoku-grid { grid-template-columns: repeat(9, 1fr); width: 100%; max-width: 360px; }
-    .cell { width: 100%; aspect-ratio: 1 / 1; font-size: 16px; }
-    #number-guide { flex-wrap: wrap; gap: 6px; }
-    .number-cell { width: 30px; height: 30px; line-height: 30px; font-size: 14px; }
-    #success-modal > div { width: 90%; max-width: 320px; padding: 20px; }
-    #success-modal p { font-size: 18px; }
+
+    /* Container */
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Header */
+    .header h1 {
+        font-size: 20px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    #timer {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Controls */
+    .controls {
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .controls button,
+    .controls select {
+        font-size: 12px;
+        padding: 5px 8px;
+        min-width: 70px;
+    }
+
+    /* Sudoku Grid */
+    #sudoku-grid {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        width: 100%;
+        max-width: 350px; /* fits most phones */
+        margin: 15px auto;
+        gap: 1px;
+    }
+
+    .cell {
+        width: 100%;
+        aspect-ratio: 1/1;
+        font-size: 16px;
+        padding: 0;
+    }
+
+    /* Number Guide */
+    #number-guide {
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .number-cell {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        line-height: 30px;
+    }
+
+    /* Success Modal */
+    #success-modal > div {
+        width: 90%;
+        max-width: 320px;
+        padding: 20px;
+    }
+
+    #success-modal p {
+        font-size: 18px;
+    }
+
+    #next-game-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }
